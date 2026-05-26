@@ -12,7 +12,6 @@
 - Typed reactive properties for primitives, nullable values, lists, and maps.
 - View-model-driven components with `CurrentComponent` and `CurrentState`.
 - Application-wide shared state with `Current`.
-- Issue-based validation that keeps localization in the component layer.
 - Built-in busy state, change notifications, and event listeners for async flows.
 
 ## Note
@@ -126,9 +125,9 @@ This is an open source project, and contributions are welcome. Please feel free 
 If submitting a pull request, please ensure the following standards are met:
 
 1. Code files must be well formatted with `dart format .`.
-2. Tests must pass with `flutter test`. New test cases to validate your changes are highly recommended.
+2. Tests must pass with `dart test`. New test cases to validate your changes are highly recommended.
 3. Implementations must not add unnecessary project dependencies.
-4. Project must contain zero warnings. Running `flutter analyze` must return zero issues.
+4. Project must contain zero warnings. Running `dart analyze` must return zero issues.
 5. Keep docstrings and README guidance up to date when public APIs change.
 
 ## Additional information

@@ -1,5 +1,5 @@
 name: example
-description: A new Jaspr project
+description: Counter example for the jaspr_current package.
 version: 0.0.1
 publish_to: none
 
