@@ -24,6 +24,8 @@ class CounterState extends CurrentState<Counter, CounterViewModel> {
 
     return div(
       [
+        div(classes: 'name', [.text('Name: ${viewModel.name}')]),
+
         div(classes: 'counter', [
           button(
             onClick: viewModel.decrement,
@@ -66,6 +68,12 @@ class CounterState extends CurrentState<Counter, CounterViewModel> {
             ),
           ],
         ),
+        div(classes: 'name-change', [
+          h2([.text('Change Name')]),
+          input<String>(
+            onInput: viewModel.name.set,
+          ),
+        ]),
       ],
     );
   }
@@ -108,6 +116,19 @@ class CounterState extends CurrentState<Counter, CounterViewModel> {
       ),
     ]),
     css('.background-options').styles(
+      display: .flex,
+      justifyContent: .center,
+      alignItems: .center,
+      gap: Gap(column: 10.px),
+    ),
+    css('.name', [
+      css('&').styles(
+        color: primaryColor,
+        textAlign: .center,
+        fontSize: 2.rem,
+      ),
+    ]),
+    css('.name-change').styles(
       display: .flex,
       justifyContent: .center,
       alignItems: .center,
