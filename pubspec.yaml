@@ -1,7 +1,6 @@
 name: jaspr_current
 description: A simple yet powerful state management library for Jaspr. Keeps your component build methods clean, with ZERO dependencies on 3rd-Party packages.
-version: 0.0.1
-publish_to: none
+version: 0.1.0
 repository: https://github.com/jshep23/jaspr_current
 
 environment:

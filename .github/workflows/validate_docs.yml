@@ -1,0 +1,37 @@
+name: "API Docs"
+
+on:
+  pull_request:
+    paths:
+      - "lib/**"
+      - "README.md"
+      - "pubspec.yaml"
+      - ".github/workflows/validate_docs.yml"
+
+  push:
+    branches:
+      - main
+    paths:
+      - "lib/**"
+      - "README.md"
+      - "pubspec.yaml"
+      - ".github/workflows/validate_docs.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  docs:
+    name: Validate docs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: 'Setup Dart'
+        uses: dart-lang/setup-dart@v1.3
+
+      - run: dart pub get
+      - run: dart doc

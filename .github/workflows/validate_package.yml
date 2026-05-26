@@ -1,0 +1,38 @@
+name: "Package"
+
+on:
+  pull_request:
+    paths:
+      - "lib/**"
+      - "pubspec.yaml"
+      - ".github/workflows/validate_package.yml"
+
+  push:
+    branches:
+      - main
+    paths:
+      - "lib/**"
+      - "pubspec.yaml"
+      - ".github/workflows/validate_examples.yml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: 'Setup Dart'
+        uses: dart-lang/setup-dart@v1.3
+      
+      - name: Run Lint
+        run: dart pub get && dart analyze
+      
+      - name: Publish Dry Run
+        run: dart pub publish --dry-run
