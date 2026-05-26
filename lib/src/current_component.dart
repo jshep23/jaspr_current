@@ -102,12 +102,6 @@ abstract class CurrentComponent<T extends CurrentViewModel> extends StatefulComp
 ///  }
 ///}
 ///```
-///**IMPORTANT**
-///If you expect the parent component of [T] to cause [T] to rebuild while reusing the same
-///[CurrentViewModel] instance, you should either use the Flutter [AutomaticKeepAliveClientMixin]
-///on the [CurrentState] implementation or set [CurrentComponent.disposeViewModel] to `false` and manage
-///the view model lifecycle yourself. Otherwise, the default owned lifecycle will dispose the view
-///model with the state.
 ///
 ///For example:
 ///```dart
