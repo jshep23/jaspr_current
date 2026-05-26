@@ -4,7 +4,6 @@
 /// To run code on the client, check the `main.client.dart` file.
 library;
 
-import 'package:example/main_view_model.dart';
 import 'package:jaspr/dom.dart';
 // Server-specific Jaspr import.
 import 'package:jaspr/server.dart';
@@ -45,7 +44,7 @@ void main() {
           fontSize: 4.rem,
         ),
       ],
-      body: App(viewModel: MainViewModel()),
+      body: App(),
     ),
   );
 }

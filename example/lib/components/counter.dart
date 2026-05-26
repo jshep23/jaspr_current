@@ -18,12 +18,11 @@ class CounterState extends CurrentState<Counter, CounterViewModel> {
 
   @override
   Component build(BuildContext context) {
+    // Access application-wide state using Current.viewModelOf, which will look up the component tree for the nearest MainViewModel
+    // bound to a Current component. In this case, it will find the MainViewModel provided in the App component.
     final mainViewModel = Current.viewModelOf<MainViewModel>(context);
 
     return div(
-      styles: Styles(
-        backgroundColor: mainViewModel.favColor.value,
-      ),
       [
         div(classes: 'counter', [
           button(
@@ -36,29 +35,35 @@ class CounterState extends CurrentState<Counter, CounterViewModel> {
             [.text('+')],
           ),
         ]),
-        select(
-          onChange: (value) {
-            switch (value) {
-              case ['none', ...]:
-                mainViewModel.favColor.value = Colors.transparent;
-              case ['green', ...]:
-                mainViewModel.favColor.value = Colors.green;
-              case ['blue', ...]:
-                mainViewModel.favColor.value = Colors.blue;
-            }
-          },
+        div(
+          classes: 'background-options',
           [
-            option(
-              value: 'none',
-              selected: mainViewModel.favColor.value == Colors.transparent,
-              [.text('None')],
+            h2([.text('Background color')]),
+            select(
+              onChange: (value) {
+                switch (value) {
+                  case ['none']:
+                    mainViewModel.favColor.value = Colors.transparent;
+                  case ['green']:
+                    mainViewModel.favColor.value = Colors.green;
+                  case ['blue']:
+                    mainViewModel.favColor.value = Colors.blue;
+                }
+              },
+              [
+                option(
+                  value: 'none',
+                  selected: mainViewModel.favColor.value == Colors.transparent,
+                  [.text('None')],
+                ),
+                option(value: 'green', selected: mainViewModel.favColor.value == Colors.green, [
+                  .text('Green'),
+                ]),
+                option(value: 'blue', selected: mainViewModel.favColor.value == Colors.blue, [
+                  .text('Blue'),
+                ]),
+              ],
             ),
-            option(value: 'green', selected: mainViewModel.favColor.value == Colors.green, [
-              .text('Green'),
-            ]),
-            option(value: 'blue', selected: mainViewModel.favColor.value == Colors.blue, [
-              .text('Blue'),
-            ]),
           ],
         ),
       ],
@@ -102,5 +107,11 @@ class CounterState extends CurrentState<Counter, CounterViewModel> {
         fontSize: 4.rem,
       ),
     ]),
+    css('.background-options').styles(
+      display: .flex,
+      justifyContent: .center,
+      alignItems: .center,
+      gap: Gap(column: 10.px),
+    ),
   ];
 }

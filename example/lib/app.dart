@@ -1,6 +1,7 @@
 import 'package:example/main_view_model.dart';
 import 'package:jaspr/dom.dart';
 import 'package:jaspr/jaspr.dart';
+import 'package:jaspr_current/jaspr_current.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 
 import 'components/header.dart';
@@ -11,29 +12,33 @@ import 'pages/home.dart';
 //
 // By using multi-page routing, this component will only be built on the server during pre-rendering and
 // **not** executed on the client. Instead only the nested [Home] and [About] components will be mounted on the client.
+@client
 class App extends StatelessComponent {
-  final MainViewModel viewModel;
+  final MainViewModel viewModel = MainViewModel();
 
-  const App({super.key, required this.viewModel});
+  App({super.key});
 
   @override
   Component build(BuildContext context) {
     // This method is rerun every time the component is rebuilt.
 
     // Renders a <div class="main"> html element with children.
-    return div(classes: 'main', [
-      const Header(),
-      Router(
-        routes: [
-          Route(
-            path: '/',
-            title: 'Home',
-            builder: (context, state) => const Home(),
-          ),
-          Route(path: '/about', title: 'About', builder: (context, state) => const About()),
-        ],
-      ),
-    ]);
+    return Current(
+      viewModel,
+      child: div(classes: 'main', [
+        const Header(),
+        Router(
+          routes: [
+            Route(
+              path: '/',
+              title: 'Home',
+              builder: (context, state) => const Home(),
+            ),
+            Route(path: '/about', title: 'About', builder: (context, state) => const About()),
+          ],
+        ),
+      ]),
+    );
   }
 
   // Defines the CSS styles for this component.

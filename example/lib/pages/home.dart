@@ -11,9 +11,7 @@ import '../components/counter.dart';
 // - this file and any imported file must be compilable for both server and client environments.
 // - this component and any child components will be built once on the server during pre-rendering and then
 //   again on the client during normal rendering.
-@client
 class Home extends StatefulComponent {
-  // final MainViewModel viewModel;
   const Home({super.key});
 
   @override
@@ -37,15 +35,13 @@ class HomeState extends State<Home> {
 
   @override
   Component build(BuildContext context) {
-    return Current(
-      MainViewModel(),
-      child: section([
-        img(src: 'images/logo.svg', width: 80),
-        h1([.text('Welcome')]),
-        p([.text('You successfully create a new Jaspr site.')]),
-        div(styles: Styles(height: 100.px), []),
-        Counter(viewModel: CounterViewModel()),
-      ]),
-    );
+    final viewModel = Current.viewModelOf<MainViewModel>(context);
+    return section(styles: Styles(backgroundColor: viewModel.favColor.value), [
+      img(src: 'images/logo.svg', width: 80),
+      h1([.text('Welcome')]),
+      p([.text('You successfully create a new Jaspr site.')]),
+      div(styles: Styles(height: 100.px), []),
+      Counter(viewModel: CounterViewModel()),
+    ]);
   }
 }
