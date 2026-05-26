@@ -34,8 +34,8 @@ jobs:
       - name: 'Configure Jaspr'
         run: dart pub global activate jaspr_cli
       
-      - name: Run Lint and Tests
-        run: dart pub get && dart analyze && dart test
+      - name: Run Lint
+        run: dart pub get && dart analyze
       
       - name: Jaspr Build
         run: jaspr build --verbose

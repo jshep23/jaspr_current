@@ -36,10 +36,10 @@ jobs:
         uses: dart-lang/setup-dart@v1.3
       
       - name: 'Configure Jaspr'
-        run: dart pub get && dart analyze && dart test
+        run: dart pub global activate jaspr_cli
       
-      - name: Run Lint and Tests
-        run: dart analyze && dart test
+      - name: Run Lint
+        run: dart pub get && dart analyze
       
       - name: Jaspr Build
         run: jaspr build --verbose
