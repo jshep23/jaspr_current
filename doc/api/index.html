@@ -43,8 +43,7 @@
   <div id="dartdoc-main-content" class="main-content">
       
 <section class="desc markdown">
-  <h1 align="center">This package is still in development! Stay tuned for updates as I work towards a stable release.</h1>
-<p align="center">
+  <p align="center">
   <a href="https://pub.dev/packages/current">
     <img src="https://raw.githubusercontent.com/jshep23/jaspr_current/main/images/CurrentLogoSM.png" alt="Current Logo">
   </a>
@@ -56,13 +55,14 @@
 <li>Typed reactive properties for primitives, nullable values, lists, and maps.</li>
 <li>View-model-driven components with <code>CurrentComponent</code> and <code>CurrentState</code>.</li>
 <li>Application-wide shared state with <code>Current</code>.</li>
-<li>Issue-based validation that keeps localization in the component layer.</li>
 <li>Built-in busy state, change notifications, and event listeners for async flows.</li>
 </ul>
+<h2 id="note">Note</h2>
+<p>This library is a port of the battle-tested <a href="https://pub.dev/packages/current">Flutter Current</a> state management library. The Jaspr implementation has not yet reached 1.0, but the core patterns and APIs are stable. The Jaspr specific components still need some time in the oven, and I certainly welcome contributions and feedback.</p>
 <h2 id="getting-started">Getting Started</h2>
 <p>In your Jaspr project, add the dependency to your <code>pubspec.yaml</code>.</p>
 <pre class="language-yaml"><code class="language-yaml">dependencies:
-  jaspr_current: ^0.0.0
+  jaspr_current: ^0.1.0
 </code></pre>
 <h2 id="quick-start">Quick Start</h2>
 <p>A small counter is still the fastest way to see the core pattern: keep state in a <code>CurrentViewModel</code>, list reactive properties in <code>currentProps</code>, and render that view model through a <code>CurrentComponent</code>.</p>
@@ -121,19 +121,24 @@ class _CounterPageState extends CurrentState&lt;CounterPage, CounterViewModel&gt
 <h3 id="maindart">main.dart</h3>
 <pre class="language-dart"><code class="language-dart">import 'package:jaspr/jaspr.dart';
 
-void main() =&gt; runApp(const MyApp());
-
-class MyApp extends StatelessComponent {
-  const MyApp({super.key});
+@client
+class App extends StatelessComponent {
+  App({super.key});
 
   @override
   Component build(BuildContext context) {
-    return Document(
-      title: 'Current State Example',
-      body: CounterPage(
-        viewModel: CounterViewModel(),
-      ),
-    );
+    return div(classes: 'main', [
+        const Header(),
+        Router(
+          routes: [
+            Route(
+              path: '/',
+              title: 'Counter',
+              builder: (context, state) =&gt; const CounterPage(viewModel: CounterViewModel()),
+            ),
+          ],
+        ),
+      ]);
   }
 }
 </code></pre>
@@ -143,9 +148,9 @@ class MyApp extends StatelessComponent {
 <p>If submitting a pull request, please ensure the following standards are met:</p>
 <ol>
 <li>Code files must be well formatted with <code>dart format .</code>.</li>
-<li>Tests must pass with <code>flutter test</code>. New test cases to validate your changes are highly recommended.</li>
+<li>Tests must pass with <code>dart test</code>. New test cases to validate your changes are highly recommended.</li>
 <li>Implementations must not add unnecessary project dependencies.</li>
-<li>Project must contain zero warnings. Running <code>flutter analyze</code> must return zero issues.</li>
+<li>Project must contain zero warnings. Running <code>dart analyze</code> must return zero issues.</li>
 <li>Keep docstrings and README guidance up to date when public APIs change.</li>
 </ol>
 <h2 id="additional-information">Additional information</h2>
