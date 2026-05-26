@@ -1,0 +1,31 @@
+name: Release PR Checks
+
+on:
+  pull_request:
+    paths:
+      - "pubspec.yaml"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Detect version change
+    runs-on: ubuntu-latest
+
+    outputs:
+      newVersion: ${{ steps.changes.outputs.newVersion }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+
+      - name: Detect new version
+        id: changes
+        run: |
+          NEW_VERSION="$(./versionChangeCheck.sh)"
+          echo "New version if changed = '$NEW_VERSION'"
+          echo ::set-output name=newVersion::$NEW_VERSION
