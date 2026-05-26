@@ -10,7 +10,7 @@ class Counter extends CurrentComponent<CounterViewModel> {
   const Counter({super.key, required super.viewModel});
 
   @override
-  CurrentState<CurrentComponent<CounterViewModel>, CounterViewModel> createCurrent() => CounterState(viewModel);
+  CurrentState<Counter, CounterViewModel> createCurrent() => CounterState(viewModel);
 }
 
 class CounterState extends CurrentState<Counter, CounterViewModel> {

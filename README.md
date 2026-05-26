@@ -1,5 +1,3 @@
-<h1 align="center">This package is still in development! Stay tuned for updates as I work towards a stable release.</h1>
-
 <p align="center">
   <a href="https://pub.dev/packages/current">
     <img src="https://raw.githubusercontent.com/jshep23/jaspr_current/main/images/CurrentLogoSM.png" alt="Current Logo" />
@@ -17,13 +15,17 @@
 - Issue-based validation that keeps localization in the component layer.
 - Built-in busy state, change notifications, and event listeners for async flows.
 
+## Note
+
+This library is a port of the battle-tested [Flutter Current](https://pub.dev/packages/current) state management library. The Jaspr implementation has not yet reached 1.0, but the core patterns and APIs are stable. The Jaspr specific components still need some time in the oven, and I certainly welcome contributions and feedback.
+
 ## Getting Started
 
 In your Jaspr project, add the dependency to your `pubspec.yaml`.
 
 ```yaml
 dependencies:
-  jaspr_current: ^0.0.0
+  jaspr_current: ^0.1.0
 ```
 
 ## Quick Start
@@ -93,19 +95,24 @@ class _CounterPageState extends CurrentState<CounterPage, CounterViewModel> {
 ```dart
 import 'package:jaspr/jaspr.dart';
 
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessComponent {
-  const MyApp({super.key});
+@client
+class App extends StatelessComponent {
+  App({super.key});
 
   @override
   Component build(BuildContext context) {
-    return Document(
-      title: 'Current State Example',
-      body: CounterPage(
-        viewModel: CounterViewModel(),
-      ),
-    );
+    return div(classes: 'main', [
+        const Header(),
+        Router(
+          routes: [
+            Route(
+              path: '/',
+              title: 'Counter',
+              builder: (context, state) => const CounterPage(viewModel: CounterViewModel()),
+            ),
+          ],
+        ),
+      ]);
   }
 }
 ```
