@@ -1,3 +1,8 @@
+# 0.1.1
+
+- Add link to Jaspr site in README.
+- Add topics to pubspec.yaml for better discoverability on pub.dev.
+
 # 0.1.0
 
 - Initial port from the [Flutter Current](https://pub.dev/packages/current) package.

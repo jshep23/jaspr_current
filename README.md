@@ -5,7 +5,7 @@
 </p>
 
 <h1 align="center">Jaspr Current</h1>
-<h3 align="center">A simple, lightweight state management library for Jaspr</h3>
+<h3 align="center">A simple, lightweight state management library for <a href="https://jaspr.site/">Jaspr</a></h3>
 
 ## Features
 
@@ -24,7 +24,7 @@ In your Jaspr project, add the dependency to your `pubspec.yaml`.
 
 ```yaml
 dependencies:
-  jaspr_current: ^0.1.0
+  jaspr_current: ^0.1.1
 ```
 
 ## Quick Start
