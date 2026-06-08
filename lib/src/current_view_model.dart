@@ -11,4 +11,10 @@ import 'current_component.dart';
 ///Update events are automatically emitted whenever the value of an [CurrentProperty] is changed.
 ///The [CurrentState] the ViewModel is bound to will update itself each time an [CurrentProperty] value
 ///is changed and call the states build function, updating the UI.
-abstract class CurrentViewModel extends CurrentStateViewModel with ChangeNotifier {}
+abstract class CurrentViewModel extends CurrentStateViewModel with ChangeNotifier {
+  @override
+  void dispose() {
+    super.dispose();
+    disposeViewModel();
+  }
+}

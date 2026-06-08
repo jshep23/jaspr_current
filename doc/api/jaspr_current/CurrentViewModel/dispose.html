@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the viewModelOf method from the Current class, for the Dart programming language.">
-  <title>viewModelOf method - Current class - jaspr_current library - Dart API</title>
+  <meta name="description" content="API docs for the dispose method from the CurrentViewModel class, for the Dart programming language.">
+  <title>dispose method - CurrentViewModel class - jaspr_current library - Dart API</title>
 
 
   
@@ -26,10 +26,10 @@
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">jaspr_current</a></li>
     <li><a href="../../jaspr_current/">jaspr_current.dart</a></li>
-    <li><a href="../../jaspr_current/Current-class.html">Current<span class="signature">&lt;<wbr><span class="type-parameter">T extends CurrentViewModel</span>&gt;</span></a></li>
-    <li class="self-crumb">viewModelOf&lt;<wbr><span class="type-parameter">T extends CurrentViewModel</span>&gt; static method</li>
+    <li><a href="../../jaspr_current/CurrentViewModel-class.html">CurrentViewModel</a></li>
+    <li class="self-crumb">dispose method</li>
   </ol>
-  <div class="self-name">viewModelOf</div>
+  <div class="self-name">dispose</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -46,37 +46,42 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar="jaspr_current&#47;Current-class-sidebar.html"
+    data-above-sidebar="jaspr_current&#47;CurrentViewModel-class-sidebar.html"
     data-below-sidebar="">
     <div>
-<h1><span class="kind-method">viewModelOf&lt;<wbr><span class="type-parameter">T extends CurrentViewModel</span>&gt;</span> static method 
+<h1><span class="kind-method">dispose</span> method 
 </h1></div>
 
     <section class="multi-line-signature">
       
-<span class="returntype">T</span>
-<span class="name ">viewModelOf</span>&lt;<wbr><span class="type-parameter">T extends CurrentViewModel</span>&gt;(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="viewModelOf-param-context"><span class="type-annotation"><a href="https://pub.dev/documentation/jaspr/0.23.1/jaspr/BuildContext-class.html">BuildContext</a></span> <span class="parameter-name">context</span></span></li>
-</ol>)
+  <div>
+    <ol class="annotation-list">
+        <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
+    </ol>
+  </div>
+<span class="returntype">void</span>
+<span class="name ">dispose</span>(<wbr>)
 
-      
+      <div class="features"><span class="feature">override</span></div>
 
     </section>
     
 <section class="desc markdown">
-  <p>Gets the <a href="../../jaspr_current/CurrentViewModel-class.html">CurrentViewModel</a> from the <a href="../../jaspr_current/CurrentApp-class.html">CurrentApp</a> that matches the generic type argument <code>T</code>.</p>
-<p>This method can be called from any widget
-below this one in the widget tree. (Example: from a child widget):</p>
-<pre class="language-dart"><code class="language-dart">Current.viewModelOf&lt;MyApplicationViewModel&gt;().logOut();
-</code></pre>
+  <p>See <a href="https://pub.dev/documentation/current_core/1.0.2/current_core/CurrentStateViewModel/disposeViewModel.html">disposeViewModel</a>.</p>
+<p>This is for backwards compatibililty where consumers were already calling dispose manually.</p>
+<p><a href="https://pub.dev/documentation/current_core/1.0.2/current_core/CurrentStateViewModel/disposeViewModel.html">disposeViewModel</a> should be called if <a href="https://pub.dev/documentation/current_core/1.0.2/current_core/CurrentStateViewModel-class.html">CurrentStateViewModel</a> is being overshadowed
+by a mixin that also implements a function named <code>dispose</code>.</p>
+<p>This will be removed in the future to prevent foot-guns. Use <a href="https://pub.dev/documentation/current_core/1.0.2/current_core/CurrentStateViewModel/disposeViewModel.html">disposeViewModel</a> instead.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static T viewModelOf&lt;T extends CurrentViewModel&gt;(BuildContext context) {
-  final CurrentApp&lt;T&gt; result = of(context);
-  return result.viewModel;
+  <pre class="language-dart"><code class="language-dart">@override
+void dispose() {
+  super.dispose();
+  disposeViewModel();
 }</code></pre>
 </section>
 
@@ -92,11 +97,11 @@ below this one in the widget tree. (Example: from a child widget):</p>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">jaspr_current</a></li>
     <li><a href="../../jaspr_current/">jaspr_current</a></li>
-    <li><a href="../../jaspr_current/Current-class.html">Current<span class="signature">&lt;<wbr><span class="type-parameter">T extends CurrentViewModel</span>&gt;</span></a></li>
-    <li class="self-crumb">viewModelOf&lt;<wbr><span class="type-parameter">T extends CurrentViewModel</span>&gt; static method</li>
+    <li><a href="../../jaspr_current/CurrentViewModel-class.html">CurrentViewModel</a></li>
+    <li class="self-crumb">dispose method</li>
 </ol>
 
-    <h5>Current class</h5>
+    <h5>CurrentViewModel class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
   </div><!--/.sidebar-offcanvas-->
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
