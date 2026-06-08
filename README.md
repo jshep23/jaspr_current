@@ -24,7 +24,7 @@ In your Jaspr project, add the dependency to your `pubspec.yaml`.
 
 ```yaml
 dependencies:
-  jaspr_current: ^0.1.1
+  jaspr_current: ^0.1.2
 ```
 
 ## Quick Start

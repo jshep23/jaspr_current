@@ -1,3 +1,8 @@
+# 0.1.2
+
+- Update current_core to 1.0.2
+- Fix issue where ChangeNotifier applied as a mixin was overriding the dispose function silently on the CurrentStateViewModel.
+
 # 0.1.1
 
 - Add link to Jaspr site in README.
